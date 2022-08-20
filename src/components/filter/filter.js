@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import RightTypography from '../typography/RightTypography';
+import { FormLabel, Grid } from '@mui/material';
 
 const Filter =({types, selectedType, setType})=> {
 
@@ -19,6 +20,9 @@ const Filter =({types, selectedType, setType})=> {
 
   return (
     <RightTypography>
+      <FormControl sx={{ m: 1, minWidth: 120, marginTop:'35px', marginLeft:'20px' }} >
+        <FormLabel>Filtered By</FormLabel>
+      </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120, marginTop:'30px', marginLeft:'20px' }} size="small">
         <InputLabel id="demo-select-small">Type</InputLabel>
         <Select
