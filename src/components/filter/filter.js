@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import RightTypography from '../typography/RightTypography';
-import { FormLabel, Grid } from '@mui/material';
+import { FormLabel } from '@mui/material';
 
 const Filter =({types, selectedType, setType})=> {
 
