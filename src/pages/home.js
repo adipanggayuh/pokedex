@@ -4,6 +4,8 @@ import axios from 'axios';
 import { GET_POKEMON_LIST_URL, GET_POKEMON_TYPES_URL } from '../constant/apiUrl';
 import PokemonList from '../components/pokemonList/pokemonList';
 import InfiniteScroll from "react-infinite-scroll-component";
+import Filter from '../components/filter/filter';
+import { filterPokemonsByType } from '../helper/helper';
 
 
 const Home = () => {
@@ -15,7 +17,9 @@ const Home = () => {
         results: []
     });
 
+    const [pokemonList, setPokemonList] = useState([])
     const [pokemonTypes, setPokemonTypes] = useState([]);
+    const [selectedType, setSelectedType] = useState("All");
 
     // ---api---
     const fetchData = (url) => {
@@ -25,7 +29,8 @@ const Home = () => {
             _pokemonData.results = [...pokemonData.results,..._pokemonData.results];
             console.log('ori1',_pokemonData.results);
             setPokemonData(_pokemonData);
-            })
+            setPokemonList(selectedType === "All" ? _pokemonData.results : filterPokemonsByType(_pokemonData.results, selectedType));
+        })
     };
 
     const fetchDetails = async (url) => {
@@ -50,6 +55,14 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(()=>{
+        let _pokemonList = filterPokemonsByType(pokemonData.results, selectedType);
+        setPokemonList(_pokemonList)
+        console.log('filtered', _pokemonList);
+        console.log('ori',pokemonData.results);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[selectedType])
+
     // ---functions---
     // get pokemon details
     const getDetails = async (data) => {
@@ -63,14 +76,15 @@ const Home = () => {
     return (
         <Container>
              <InfiniteScroll
-                    dataLength={pokemonData.results.length}
+                    dataLength={pokemonList.length}
                     next={fetchNext}
                     hasMore={true}
                     loader={<h4>Loading...</h4>}
                 >
             <Grid container rowSpacing={2} columnSpacing={2}>
+                <Filter types={pokemonTypes} selectedType={selectedType} setType={setSelectedType}/>
                 <Divider sx={{ padding: 1, width: '100%' }} />
-                <PokemonList data={pokemonData.results}/>
+                <PokemonList data={pokemonList}/>
             </Grid>
             </InfiniteScroll>
         </Container>
