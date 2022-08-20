@@ -27,7 +27,6 @@ const Home = () => {
             let _pokemonData = {...res.data};
             _pokemonData.results = await getDetails(_pokemonData.results);
             _pokemonData.results = [...pokemonData.results,..._pokemonData.results];
-            console.log('ori1',_pokemonData.results);
             setPokemonData(_pokemonData);
             setPokemonList(filterPokemonsByType(_pokemonData.results, selectedType));
         })
@@ -58,11 +57,15 @@ const Home = () => {
     useEffect(()=>{
         let _pokemonList = filterPokemonsByType(pokemonData.results, selectedType);
         setPokemonList(_pokemonList)
-        console.log('filtered', _pokemonList);
-        console.log('ori',pokemonData.results);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[selectedType])
 
+    useEffect(()=>{
+        if(pokemonList.length<20){
+            fetchNext();
+        }
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[pokemonList])
     // ---functions---
     // get pokemon details
     const getDetails = async (data) => {
