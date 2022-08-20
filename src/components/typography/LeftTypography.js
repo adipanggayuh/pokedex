@@ -1,13 +1,13 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-
+import styles from './styles';
 const LeftTypography = (props) => {
     return (
         <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', } }}
+            sx={styles.leftTypography}
         >
             {props.children}
         </Typography>

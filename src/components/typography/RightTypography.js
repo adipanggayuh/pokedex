@@ -1,9 +1,9 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-
+import styles from './styles';
 const RightTypography = (props) => {
     return (
-        <Typography component={'div'} sx={{ flexGrow: 1, }} align='right'>
+        <Typography component={'div'} sx={styles.flexGrow} align='right'>
             {props.children}
         </Typography>
     )

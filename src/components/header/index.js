@@ -4,10 +4,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import LeftTypography from '../typography/LeftTypography';
 import logo from '../../media/logopoke.webp';
-
+import styles from './styles';
 const Header = () => {
     return (
-        <AppBar position="static" sx={{ marginBottom: 2, backgroundColor:"#fecf28" }}>
+        <AppBar position="static" sx={styles.headerStyle}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LeftTypography>

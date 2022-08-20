@@ -3,8 +3,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import FormLabel from '@mui/material/FormLabel';
 import RightTypography from '../typography/RightTypography';
-import { FormLabel } from '@mui/material';
+import { NONE } from '../../constant/constant';
+import styles from './styles';
 
 const Filter =({types, selectedType, setType})=> {
 
@@ -20,10 +22,10 @@ const Filter =({types, selectedType, setType})=> {
 
   return (
     <RightTypography>
-      <FormControl sx={{ m: 1, minWidth: 120, marginTop:'35px', marginLeft:'20px' }} >
+      <FormControl sx={styles.formControlLabel} >
         <FormLabel>Filtered By</FormLabel>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120, marginTop:'30px', marginLeft:'20px' }} size="small">
+      <FormControl sx={styles.formControlSelect} size="small">
         <InputLabel id="demo-select-small">Type</InputLabel>
         <Select
           labelId="demo-select-small"
@@ -32,8 +34,8 @@ const Filter =({types, selectedType, setType})=> {
           label="Type"
           onChange={handleChange}
         >
-          <MenuItem value="None">
-            <em>None</em>
+          <MenuItem value={NONE}>
+            <em>{NONE}</em>
           </MenuItem>
           {renderMenuItem()}
         </Select>

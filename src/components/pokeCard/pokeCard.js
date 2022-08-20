@@ -6,7 +6,8 @@ import { capitalizeFirstChar, getBgImage, getImage, extractValue } from '../../h
 import defaultImg from '../../media/default.svg';
 import LeftTypography from '../typography/LeftTypography';
 import PokeTabs from '../pokeDetail/pokeTabs';
-
+import { MOVE } from '../../constant/constant';
+import styles from './styles';
 const PokemonDetail = (props) => {
     // ======== variable and state =======
     const {pokemon} = props;
@@ -21,11 +22,7 @@ const PokemonDetail = (props) => {
             setPokeInfo(pokemon);
             setBgImage(getBgImage(pokemon));
             setPokeImage(getImage(pokemon));
-            setMoves(getMoves(pokemon));
-    }
-
-    const getMoves = (poke) => {
-        return poke.moves ? extractValue(poke.moves, 'move') : [];
+            setMoves(extractValue(pokemon.moves, MOVE));
     }
 
     // ========= lifecycle ======
@@ -47,7 +44,7 @@ const PokemonDetail = (props) => {
                     }}
                 >
                     <CardContent>
-                        <Typography component="div" sx={{ flexGrow: 1, }} align='center'>
+                        <Typography component="div" sx={styles.flexGrow} align='center'>
                             <img src={pokeImage} alt="" height={150} />
                         </Typography>
                     </CardContent>
@@ -62,7 +59,7 @@ const PokemonDetail = (props) => {
                     >
                         <Toolbar disableGutters>
                             <LeftTypography>
-                                {pokeInfo.name && <Chip label={capitalizeFirstChar(pokeInfo.name)} sx={{ fontSize: 20 }} />}
+                                {pokeInfo.name && <Chip label={capitalizeFirstChar(pokeInfo.name)} sx={styles.font20} />}
                             </LeftTypography>
                         </Toolbar>
                         <PokeTabs pokeInfo={pokeInfo} moves={moves} />

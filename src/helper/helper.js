@@ -16,10 +16,10 @@ const getImage = (poke) => {
     return poke?.sprites?.other?.dream_world?.front_default || defaultImage;
 }
 const extractValue = (array, paramName) => {
-    return array.reduce((acc, cur) => {
+    return array && array.length > 0 ? array.reduce((acc, cur) => {
         acc.push(cur[paramName].name);
         return acc;
-    }, []);
+    }, []) : [];
 }
 
 const capitalizeFirstChar = (str) => {

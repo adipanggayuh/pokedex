@@ -6,7 +6,8 @@ import PokemonList from '../components/pokemonList/pokemonList';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Filter from '../components/filter/filter';
 import { filterPokemonsByType } from '../helper/helper';
-
+import { NONE } from '../constant/constant';
+import styles from './styles';
 
 const Home = () => {
     // ---state---
@@ -19,7 +20,7 @@ const Home = () => {
 
     const [pokemonList, setPokemonList] = useState([])
     const [pokemonTypes, setPokemonTypes] = useState([]);
-    const [selectedType, setSelectedType] = useState("None");
+    const [selectedType, setSelectedType] = useState(NONE);
 
     // ---api---
     const fetchData = (url) => {
@@ -86,7 +87,7 @@ const Home = () => {
                 >
             <Grid container rowSpacing={2} columnSpacing={2}>
                 <Filter types={pokemonTypes} selectedType={selectedType} setType={setSelectedType}/>
-                <Divider sx={{ padding: 1, width: '100%' }} />
+                <Divider sx={styles.devider} />
                 <PokemonList data={pokemonList}/>
             </Grid>
             </InfiniteScroll>

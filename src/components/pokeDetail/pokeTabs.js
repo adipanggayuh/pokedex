@@ -6,6 +6,8 @@ import {
 } from '@mui/material';
 import TabPanel from './tabPanel';
 import { extractValue } from '../../helper/helper';
+import {TYPE, ABILITY} from '../../constant/constant';
+import styles from './styles';
 
 const allProps = (index) => {
     return {
@@ -21,15 +23,6 @@ const PokeTabs = ({ pokeInfo, moves }) => {
     const handleChange = (event, newValue) => {
         setTabVal(newValue);
     };
-    const getTypes = (poke) => {
-        let types = poke.types ? extractValue(poke.types, 'type') : [];
-        return types.join();
-    }
-
-    const getAbilities = (poke) => {
-        let abilities = poke.abilities ? extractValue(poke.abilities, 'ability') : [];
-        return abilities.join(", ");
-    }
 
     const chipGenerator = (data) => {
         return data.length > 0 && data.map(item => {
@@ -39,20 +32,20 @@ const PokeTabs = ({ pokeInfo, moves }) => {
 
     return (
 
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={styles.maxWidth}>
+            <Box sx={styles.tabbar}>
                 <Tabs value={tabVal} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="About" {...allProps(0)} />
                     <Tab label="Moves" {...allProps(1)} />
                 </Tabs>
             </Box>
             <TabPanel value={tabVal} index={0}>
-                <Grid container sx={{textAlign:"left"}}>
+                <Grid container sx={styles.leftAlign}>
                     <Grid item xs={3}>
                         Types
                     </Grid>
                     <Grid item xs={9}>
-                        : {getTypes(pokeInfo)}
+                        : {extractValue(pokeInfo.types, TYPE).join(", ")}
                     </Grid>
                     <Grid item xs={3}>
                         Height
@@ -70,7 +63,7 @@ const PokeTabs = ({ pokeInfo, moves }) => {
                         Abilities
                     </Grid>
                     <Grid item xs={9}>
-                        : {getAbilities(pokeInfo)}
+                        : {extractValue(pokeInfo.abilities, ABILITY).join(", ")}
                     </Grid>
                 </Grid>
             </TabPanel>
