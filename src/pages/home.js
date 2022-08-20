@@ -19,7 +19,7 @@ const Home = () => {
 
     const [pokemonList, setPokemonList] = useState([])
     const [pokemonTypes, setPokemonTypes] = useState([]);
-    const [selectedType, setSelectedType] = useState("All");
+    const [selectedType, setSelectedType] = useState("None");
 
     // ---api---
     const fetchData = (url) => {
@@ -29,7 +29,7 @@ const Home = () => {
             _pokemonData.results = [...pokemonData.results,..._pokemonData.results];
             console.log('ori1',_pokemonData.results);
             setPokemonData(_pokemonData);
-            setPokemonList(selectedType === "All" ? _pokemonData.results : filterPokemonsByType(_pokemonData.results, selectedType));
+            setPokemonList(filterPokemonsByType(_pokemonData.results, selectedType));
         })
     };
 

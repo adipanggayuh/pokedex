@@ -26,9 +26,10 @@ const capitalizeFirstChar = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-const filterPokemonsByType = (data, types) => {
-    data = data.filter(item=> item.details.types.find(rec=>rec.type.name === types));
-    console.log('filtered', data);
+const filterPokemonsByType = (data, type) => {
+    if(type !== "None") {
+        data = data.filter(item=> item.details.types.find(rec=>rec.type.name === type));
+    }
     return data;
 }
 
