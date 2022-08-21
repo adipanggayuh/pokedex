@@ -5,3 +5,6 @@ browse your pokemon here
 1. Clone repository
 2. `npm install`
 3. `npm start`
+
+## Unit test
+`npm test`
