@@ -5,7 +5,7 @@ const getBgImage = (poke) => {
     return type ? bg[type] : bg.normal;
 }
 const getFirstType = (poke) => {
-    if (poke.types && poke.types.length) {
+    if (poke && poke.types && poke.types.length) {
         return poke.types[0].type.name;
     } else {
         return null;
@@ -16,10 +16,16 @@ const getImage = (poke) => {
     return poke?.sprites?.other?.dream_world?.front_default || defaultImage;
 }
 const extractValue = (array, paramName) => {
-    return array && array.length > 0 ? array.reduce((acc, cur) => {
-        acc.push(cur[paramName].name);
-        return acc;
-    }, []) : [];
+    if(array && array.length > 0 && Array.isArray(array) && paramName) {
+        return array.reduce((acc, cur) => {
+            if(cur[paramName]){
+                acc.push(cur[paramName].name);
+            }
+            return acc;
+        }, []);
+    }else{
+        return [];
+    }
 }
 
 const capitalizeFirstChar = (str) => {
@@ -27,8 +33,10 @@ const capitalizeFirstChar = (str) => {
 }
 
 const filterPokemonsByType = (data, type) => {
-    if(type !== "None") {
+    if(type && type !== "None" && data && Array.isArray(data)) {
         data = data.filter(item=> item.details.types.find(rec=>rec.type.name === type));
+    }else if(!Array.isArray(data)){
+        data = [];
     }
     return data;
 }
