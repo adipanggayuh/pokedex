@@ -32,7 +32,6 @@ test('get pokemon background', () =>{
 })
 
 test('extract pokemon detail values to array', () =>{
-    console.log(extractValue('pikachu'))
     expect(extractValue('pikachu')).toStrictEqual([]);
     expect(extractValue()).toStrictEqual([]);
     expect(extractValue({})).toStrictEqual([]);
@@ -42,7 +41,6 @@ test('extract pokemon detail values to array', () =>{
 })
 
 test('extract pokemon filter by type', () =>{
-    console.log(filterPokemonsByType('pikachu'))
     expect(filterPokemonsByType('pikachu')).toStrictEqual([]);
     expect(filterPokemonsByType()).toStrictEqual([]);
     expect(filterPokemonsByType({})).toStrictEqual([]);
