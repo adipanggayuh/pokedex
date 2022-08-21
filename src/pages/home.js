@@ -18,7 +18,7 @@ const Home = () => {
         results: []
     });
 
-    const [pokemonList, setPokemonList] = useState([])
+    const [pokemonList, setPokemonList] = useState([]);
     const [pokemonTypes, setPokemonTypes] = useState([]);
     const [selectedType, setSelectedType] = useState(NONE);
 
@@ -34,7 +34,7 @@ const Home = () => {
     };
 
     const fetchDetails = async (url) => {
-        let response = await axios.get(url)
+        let response = await axios.get(url);
         return response.data;
     }
 
@@ -57,7 +57,7 @@ const Home = () => {
 
     useEffect(()=>{
         let _pokemonList = filterPokemonsByType(pokemonData.results, selectedType);
-        setPokemonList(_pokemonList)
+        setPokemonList(_pokemonList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[selectedType])
 

@@ -27,7 +27,7 @@ const PokeTabs = ({ pokeInfo, moves }) => {
     const chipGenerator = (data) => {
         return data.length > 0 && data.map(item => {
             return <Chip key={item} label={item} />
-        })
+        });
     }
 
     return (

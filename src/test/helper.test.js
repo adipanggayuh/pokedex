@@ -45,7 +45,7 @@ test('extract pokemon filter by type', () =>{
     expect(filterPokemonsByType()).toStrictEqual([]);
     expect(filterPokemonsByType({})).toStrictEqual([]);
     expect(filterPokemonsByType(null, 'ability')).toStrictEqual([]);
-    let filtered = filterPokemonsByType(dummypokemons, 'normal')
+    let filtered = filterPokemonsByType(dummypokemons, 'normal');
     expect(filtered.length).toBe(1);
     expect(filterPokemonsByType(dummypokemons, 'fire')).toStrictEqual([]);
 })

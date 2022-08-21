@@ -17,7 +17,7 @@ const Filter =({types, selectedType, setType})=> {
   const renderMenuItem = () => {
     return types.length>0 && types.map((item, i)=>{
             return <MenuItem key={item.name + i} value={item.name}>{item.name}</MenuItem>
-        })    
+        });    
   }
 
   return (
